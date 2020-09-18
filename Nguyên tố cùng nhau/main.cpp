@@ -11,12 +11,8 @@ bool kt(int n){
     return true;
 }
 int ucll(int a, int b){
-    while (b != 0){
-        int tmp = a%b;
-        a= b;
-        b = tmp; 
-    }
-    return a;
+    if (a == 0) return b;
+    return ucll(a%b,a);
 }
 
 int main(){

@@ -1,24 +1,27 @@
-#include <iostream> 
-#include <cmath>
+#include <bits/stdc++.h>
 using namespace std; 
 bool kt(int n){
-    int d;
+    int d = 0,tmp = 0;
     int i = 2;
         while(n >= 2){
-            d = 0;
+            bool kt = false;
             while (n % i == 0){
-                d++;
+                kt = true;
+                tmp ++;
                 n/=i;
             }
-            if (d >= 2) return false;
+            if (kt) d++;
+            // if (kt)
+                // cout << d << " " << i << endl;
             i++;
         }
-    return true;
+    return (d == 3 && tmp == 3);
 }
 int main(){
-    int t,n,m;  
+    int t = 1;  
     cin >> t;
     while(t--){
+        int n = 60;
         cin >> n; 
         if (kt(n)) cout << "1";
         else cout << "0";

@@ -8,8 +8,7 @@ int main(){
     int t;string s;
     cin >> t;
     while(t--){
-        cin.ignore();
-        getline(cin, s);
+        cin >> s;
         unsigned long long d = 0;
         for (int i = 0; i< s.size(); i++){
             for (int j = i; j< s.size(); j++){
@@ -21,3 +20,4 @@ int main(){
     }
     return 0;
 }
+// aaaaatyabcdd
