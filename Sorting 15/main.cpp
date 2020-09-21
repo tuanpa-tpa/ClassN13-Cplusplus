@@ -4,27 +4,34 @@ int main(){
     ios_base::sync_with_stdio(false);
     cout.tie(0);cin.tie(0);
     int n,temp,k,t;
+    int A[100005];
     cin >> t;
     while (t--){
-        vector<int> A;
-        A.clear();
+        int n,k;
         cin >> n >> k;
-        for (int i = 0; i< n; i++){
-            cin >> temp;
-            A.push_back(temp);
+        for (int i = 1; i<= n; i++){
+            cin >> A[i];
         }
-        sort(A.begin(),A.end());
-        int countEqual = 0;
-        while(A[A.size()-1] - A[0] > k) A.pop_back();// xoa phan tu tru sai
-        int temp = A.size()-1;
-        while(A[temp]- A[0] == k) temp--;
-        long long countRes = (temp*(temp+1))/2;
-        cout << countRes << endl;
-        for (int i = temp; i < A.size();i++){
-            for (int j = 1; j< A.size()-1;j++)
-                cout << A[i] - A[j] << endl;
-        }
-        // cout << --countRes;
+        sort(A+1,A+n+1);
+        while(A[n] - A[1] > k) n--;
+        if (A[n]- A[1] < k){
+            cout << n*(n-1)/2;
+        } else {
+            int temp = n,d =0,res = 0;
+            while(A[temp] - A[1] == k) {
+                temp--;
+                d++;
+            }
+            res = temp*(temp-1)/2;
+            // cout << res << endl;
+            // cout << temp << " "<< n << endl;
+            for (int i = temp+1 ; i<= n; i++){
+                for (int j = 1; j<= i-1;j++)
+                    if (A[i] - A[j] < k) 
+                        res++;
+            }
+            cout << res;
+        }  
         cout << endl;
     }
     return 0;
