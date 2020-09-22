@@ -3,26 +3,32 @@ using namespace std;
 int main(){
 	int t = 1;
 	cin >> t;
-	// cin.ignore();
 	while(t--){
-		int d = 0, check = 0,max = 0;
-		string s = "10111000000100";
+		string s = "100";
 		cin >> s;
-		// cout << s;
-		int temp = s.find("100");
-		// cout << " "<<temp << endl;
-		check = temp+1;
-
-		while(temp >= 0){
-			if (temp+1 == check|| check == temp || temp+2 == check) d+=3;
-			else d = 0;
-			if (max < d) max = d;
-			check = temp;
-			s.erase (temp,3);   
-			temp = s.find("100");
-			// cout << s << " " << temp <<endl;
+		vector<char> v1;
+		vector<long long> v2;
+		v1.clear();v2.clear();
+		v1.push_back('!');
+		v2.push_back(-1);
+		long long MAX = 0;
+		for (long long i = 0; i< s.size();i++){
+			v1.push_back(s[i]);v2.push_back(i);
+			while(v1.size()>=3 
+				&& v1[v1.size() - 3] == '1'
+				&& v1[v1.size() - 2] == '0'
+				&& v1[v1.size() - 1] == '0'){
+				v1.pop_back();
+				v1.pop_back();
+				v1.pop_back();
+				v2.pop_back();
+				v2.pop_back();
+				v2.pop_back();
+			}
+			long long temp = v2.back();
+			MAX = max(MAX,i-temp);
 		}
-		cout << max;
+		cout << MAX;
 		cout << endl;
 	}
 	return 0;

@@ -12,17 +12,17 @@ int main(){
         int A[n+1],B[n+1];
         for (int i = 0; i< n; i++) cin >> A[i];
         for (int i = 0; i< n; i++) cin >> B[i];
-        int max = 0,d = 0,c= 0;
+        int k = 0,d = 0,c= 0;
         for (int i = 0; i< n; i++){
-            int j;
-            if (A[i] == B[i]){
-                j = i+1;
-                while(A[j] == B[j]) j++;
-                if ((j-i+1) > max) max = j-i+1;
+            int d = 0,sum1 = 0,sum2 =0;
+            for (int j = i; j<n; j++){
+                sum1+=A[j];
+                sum2+=B[j];
+                d++;
+                if(sum1 == sum2) k = max(d,k);
             }
-            i = j-1;
         }
-        cout << max << endl;
+        cout << k << endl;
     }   
     return 0;
 }
