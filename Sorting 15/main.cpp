@@ -7,31 +7,23 @@ int main(){
     int A[100005];
     cin >> t;
     while (t--){
-        int n,k;
+        int n,k,res= 0;
         cin >> n >> k;
         for (int i = 1; i<= n; i++){
             cin >> A[i];
         }
         sort(A+1,A+n+1);
-        while(A[n] - A[1] > k) n--;
-        if (A[n]- A[1] < k){
-            cout << n*(n-1)/2;
-        } else {
-            int temp = n,d =0,res = 0;
-            while(A[temp] - A[1] == k) {
-                temp--;
-                d++;
-            }
-            res = temp*(temp-1)/2;
-            // cout << res << endl;
-            // cout << temp << " "<< n << endl;
-            for (int i = temp+1 ; i<= n; i++){
-                for (int j = 1; j<= i-1;j++)
-                    if (A[i] - A[j] < k) 
-                        res++;
-            }
-            cout << res;
-        }  
+        int d = 1;
+        for (int i = 2; i<=n;i++)
+            if (A[i] - A[0] < k) d++;
+            else break;
+        // cout << d << endl;
+        res= d*(d-1)/2;
+        for (int i = d+1; i<=n; i++){
+            for (int j = 0; j< i; j++)
+                if (A[i] - A[j] < k) res++;
+        }
+        cout << res;
         cout << endl;
     }
     return 0;
