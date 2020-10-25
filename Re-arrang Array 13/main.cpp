@@ -1,66 +1,83 @@
-// #include <bits/stdc++.h>
+// #include <iostream>
+// #include <vector>
+// #include <map>
 // using namespace std;
+// #define pt 1000000
+// class solution{
+//     private:
+//         int n,m;
+//         vector<int> A,B;
+//     public:
+//         friend istream &operator >> (istream &is, solution &s){
+//             is >> s.n >> s.m;
+//             s.A.resize(s.n);
+//             s.B.resize(s.m);
+//             for (int i = 0; i< s.n; i++) is >> s.A[i];
+//             for (int i = 0; i< s.m; i++) is >> s.B[i];
+//             return is;
+//         }
+//         void Rearray13(){
+//             map <int,int> ma;
+//             map <int,int> ::iterator it;
+//             for (int i = 0; i< n; i++){
+//                 ma[A[i]]++;
+//             }
+//             for (int i = 0; i< m ;i++){
+//                 for (int j = 0; j< ma[B[i]]; j++){
+//                     cout << B[i] << " ";
+//                 }
+//                 ma.erase(B[i]);
+//             }
+//             for (it = ma.begin(); it != ma.end(); it++){
+//                 for (int j = 0; j< it->second;j++){
+//                     cout << it->first << " ";
+//                 }
+//             }
+//         }
+// };
+
 // int main(){
-// 	ios_base::sync_with_stdio(false);
-// 	cin.tie(0);cout.tie(0);
-// 	int t;
-// 	cin >> t;
-// 	while(t--){
-// 		int n,m;
-// 		cin >> n >> m;
-// 		int A[1000005]= {0},MAX = 0,tmp;
-// 		for (int i = 0; i< n; i++) {
-// 			cin >> tmp;
-// 			A[tmp]++;
-// 			MAX = max(tmp,MAX);
-// 		}
-// 		for (int i = 0; i< m; i++) {
-// 			cin >> tmp;
-// 			if (A[tmp] > 0){
-// 				for (int i = 1; i<= A[tmp];i++)
-// 					cout << tmp << " ";
-// 				A[tmp] = 0;
-// 			}
-// 		}
-// 		for (int i = 1; i<= MAX; i++)
-// 			if (A[i] > 0) cout << i << " ";
-// 		cout << endl;
-// 	}
-// 	return 0;
+//     int t;
+//     cin >> t;
+//     while(t--){
+//         solution ob;
+//         cin >> ob;
+//         ob.Rearray13();
+//         cout << endl;
+//     }
+//     return 0;
 // }
-#include <bits/stdc++.h> 
-using namespace std; 
-void pri(int a1[], int a2[], int n, int m) { 
-    map<int, int> mp; 
-    map<int, int>::iterator it; 
-    for (int i = 0; i < n; i++) 
-        mp[a1[i]]++; 
-    for (int i = 0; i < m; i++) { 
-        if (mp.find(a2[i]) != mp.end()) { 
-            it = mp.find(a2[i]); 
-            for (int j = 0; j < it->second; j++) 
-                cout << it->first << " "; 
-            mp.erase(a2[i]); 
-        } 
-    } 
-    for (it = mp.begin(); it != mp.end(); it++) { 
-        for (int j = 0; j < it->second; j++) 
-            cout << it->first << " "; 
-    } 
-    cout << endl; 
-} 
-int main() { 
-	ios_base::sync_with_stdio(false);
-	cin.tie(0);cout.tie(0);
-	int t;
-	cin >> t;
-	while(t--){
-		int n,m;
-		cin >> n >> m;
-		int A[n+1],B[m+1];
-		for (int i = 0; i< n;i++) cin >> A[i];
-		for (int i = 0; i< m;i++) cin >> B[i];
-		pri(A, B, n, m); 
-	} 
-    return 0; 
-} 
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include <algorithm>
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        int n,m;
+        cin >> n >> m;
+        int A[n],B[m];
+        for (int i = 0; i< n; i++) cin >> A[i];
+        for (int i = 0; i< m; i++) cin >> B[i];
+        sort(A,A+n);
+        int temp = A[0]-1;
+    for (int i = 0; i< m; i++){
+        for(int j = 0; j< n; j++){
+            if (B[i] == A[j]){
+                cout << A[j] << " ";
+                A[j] = temp;
+            }
+            if (A[j] > B[i]) break;
+        }
+    }
+    for (int i = 0; i< n; i++){
+        if (A[i] != temp) cout << A[i] << " ";
+    }
+        cout << endl;
+    }
+    return 0;
+}
+
