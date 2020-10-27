@@ -33,7 +33,7 @@ int main(){
             }
             m--;
             if (m > cot){
-                for (int i = m-1;i>=cot; i--){
+                for (int i = m-1;i>= cot; i--){
                     data= A[n-1][i];
                     A[n-1][i] = temp;
                     temp = data;
